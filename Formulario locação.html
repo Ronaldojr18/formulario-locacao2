@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulário de Locação de Imóvel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: #f2f4f8;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: #ffffff;
+      max-width: 600px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #003366;
+      margin-bottom: 20px;
+    }
+
+    .locatario {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .locatario h3 {
+      background: #003366;
+      color: #fff;
+      padding: 10px;
+      margin: -20px -20px 20px -20px;
+      border-radius: 6px 6px 0 0;
+      font-size: 16px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .buttons button {
+      background: #003366;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      margin: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background: #001f4d;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      input {
+        font-size: 14px;
+      }
+
+      .buttons button {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Formulário para Locação de Imóvel</h2>
+    <form id="formLocacao" action="https://SEUSERVIDOR/webhook/captacao-locacao" method="POST">
+      <div id="locatarios">
+        <div class="locatario">
+          <h3>Locatário 1</h3>
+          <label>Nome Completo *</label>
+          <input type="text" name="nome[]" required>
+
+          <label>Estado Civil *</label>
+          <input type="text" name="estado_civil[]" required>
+
+          <label>Nacionalidade *</label>
+          <input type="text" name="nacionalidade[]" required>
+
+          <label>Profissão *</label>
+          <input type="text" name="profissao[]" required>
+
+          <label>RG *</label>
+          <input type="text" name="rg[]" required>
+
+          <label>Órgão Expedidor *</label>
+          <input type="text" name="orgao_expedidor[]" required>
+
+          <label>CPF *</label>
+          <input type="text" name="cpf[]" required>
+
+          <label>Endereço Completo *</label>
+          <input type="text" name="endereco[]" required>
+
+          <label>Telefone / WhatsApp *</label>
+          <input type="text" name="telefone[]" required>
+
+          <label>E-mail *</label>
+          <input type="email" name="email[]" required>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button type="button" onclick="addLocatario()">Adicionar Locatário</button>
+        <button type="submit">Enviar Dados</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    let count = 1;
+
+    function addLocatario() {
+      count++;
+      const div = document.createElement('div');
+      div.className = 'locatario';
+      div.innerHTML = `
+        <h3>Locatário ${count}</h3>
+        <label>Nome Completo *</label>
+        <input type="text" name="nome[]" required>
+
+        <label>Estado Civil *</label>
+        <input type="text" name="estado_civil[]" required>
+
+        <label>Nacionalidade *</label>
+        <input type="text" name="nacionalidade[]" required>
+
+        <label>Profissão *</label>
+        <input type="text" name="profissao[]" required>
+
+        <label>RG *</label>
+        <input type="text" name="rg[]" required>
+
+        <label>Órgão Expedidor *</label>
+        <input type="text" name="orgao_expedidor[]" required>
+
+        <label>CPF *</label>
+        <input type="text" name="cpf[]" required>
+
+        <label>Endereço Completo *</label>
+        <input type="text" name="endereco[]" required>
+
+        <label>Telefone / WhatsApp *</label>
+        <input type="text" name="telefone[]" required>
+
+        <label>E-mail *</label>
+        <input type="email" name="email[]" required>
+      `;
+      document.getElementById('locatarios').appendChild(div);
+    }
+  </script>
+</body>
+</html>
